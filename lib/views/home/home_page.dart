@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:wabiz/theme.dart';
 import 'package:wabiz/view_model/home/home_view_model.dart';
@@ -98,6 +99,9 @@ class _HomePageState extends State<HomePage> {
                                 itemBuilder: (context, index) {
                                   final data = value[index];
                                   return InkWell(
+                                    onTap: () {
+                                      context.push('/home/category/${data.id}');
+                                    },
                                     child: Column(
                                       children: [
                                         CircleAvatar(

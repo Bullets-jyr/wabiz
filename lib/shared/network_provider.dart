@@ -11,7 +11,8 @@ Dio dio(DioRef ref) {
 
   if (defaultTargetPlatform == TargetPlatform.android) {
     // localhost = '10.0.2.2';
-    localhost = '10.220.190.38';
+    // localhost = '10.220.190.38';
+    localhost = '192.168.0.105';
   }
 
   final options = BaseOptions(
