@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:wabiz/theme.dart';
 
 class CategoryPage extends StatefulWidget {
   final String categoryId;
@@ -116,6 +117,136 @@ class _CategoryPageState extends State<CategoryPage> {
                   ),
                 );
               },
+            ),
+          ),
+          Divider(
+            height: 0,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        DropdownButton(
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text('전체'),
+                            ),
+                          ],
+                          onChanged: (value) {},
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                          ),
+                          underline: SizedBox.shrink(),
+                        ),
+                        Gap(24),
+                        DropdownButton(
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text('추천순'),
+                            ),
+                          ],
+                          onChanged: (value) {},
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                          ),
+                          underline: SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 24),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 164,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.blue,
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        right: 2,
+                                        top: 2,
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.favorite_border,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Gap(16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '[내 손안의 와이파이] 6G 라우터로 어디서든 빠르게',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Gap(8),
+                                      Text(
+                                        '류지영',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: AppColors.wabizGray[500],
+                                        ),
+                                      ),
+                                      Gap(8),
+                                      Text(
+                                        '1,000 명 참여',
+                                        style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Gap(8),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 6,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.bg,
+                                        ),
+                                        child: Text(
+                                          '1,000원',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
