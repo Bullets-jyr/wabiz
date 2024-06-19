@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wabiz/service/home/home_api.dart';
 import 'package:wabiz/service/home/home_api_service.dart';
 
 import '../../model/home/home_model.dart';
+import '../../service/home/home_api.dart';
 
 part 'home_repository.g.dart';
 
