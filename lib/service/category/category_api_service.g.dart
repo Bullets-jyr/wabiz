@@ -7,7 +7,7 @@ part of 'category_api_service.dart';
 // **************************************************************************
 
 String _$categoryApiServiceHash() =>
-    r'f543b1190d2694d91f44435e917ca874b25aef20';
+    r'da1f1fd1b5ffa8d435d77cc2a5e54413ac245c74';
 
 /// See also [categoryApiService].
 @ProviderFor(categoryApiService)
