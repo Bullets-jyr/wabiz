@@ -4,6 +4,7 @@ import 'package:wabiz/views/home/home_page.dart';
 import 'package:wabiz/views/wabiz_app_shell.dart';
 
 import 'views/category/category_page.dart';
+import 'views/login/sign_up_page.dart';
 import 'views/my/my_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -13,6 +14,13 @@ final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/home',
   routes: [
+    GoRoute(
+      path: '/sign-up',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) {
+        return const SignUpPage();
+      },
+    ),
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) {
