@@ -311,7 +311,7 @@ class _FetchCategoryProjectsByTypeProviderElement
       (origin as FetchCategoryProjectsByTypeProvider).categoryId;
 }
 
-String _$categoryViewModelHash() => r'63f8dcec60d7e7a68bc6e41a1456bdb0685c6a5d';
+String _$categoryViewModelHash() => r'b8d6af89f583a45afb64f5f910d5b8fdb027a191';
 
 /// See also [CategoryViewModel].
 @ProviderFor(CategoryViewModel)
