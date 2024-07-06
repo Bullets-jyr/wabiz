@@ -15,4 +15,9 @@ abstract class LoginApi {
   Future<ResponseModel> signUp(
     @Body() LoginModel body,
   );
+
+  @GET('/checkauth')
+  Future<ResponseModel> checkEmail(
+    @Body() LoginModel body,
+  );
 }
