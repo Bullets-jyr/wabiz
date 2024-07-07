@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MyState {
   bool? get loginState => throw _privateConstructorUsedError;
+  LoginModel? get loginModel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyStateCopyWith<MyState> get copyWith => throw _privateConstructorUsedError;
@@ -27,7 +28,9 @@ abstract class $MyStateCopyWith<$Res> {
   factory $MyStateCopyWith(MyState value, $Res Function(MyState) then) =
       _$MyStateCopyWithImpl<$Res, MyState>;
   @useResult
-  $Res call({bool? loginState});
+  $Res call({bool? loginState, LoginModel? loginModel});
+
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -44,13 +47,30 @@ class _$MyStateCopyWithImpl<$Res, $Val extends MyState>
   @override
   $Res call({
     Object? loginState = freezed,
+    Object? loginModel = freezed,
   }) {
     return _then(_value.copyWith(
       loginState: freezed == loginState
           ? _value.loginState
           : loginState // ignore: cast_nullable_to_non_nullable
               as bool?,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginModelCopyWith<$Res>? get loginModel {
+    if (_value.loginModel == null) {
+      return null;
+    }
+
+    return $LoginModelCopyWith<$Res>(_value.loginModel!, (value) {
+      return _then(_value.copyWith(loginModel: value) as $Val);
+    });
   }
 }
 
@@ -61,7 +81,10 @@ abstract class _$$MyStateImplCopyWith<$Res> implements $MyStateCopyWith<$Res> {
       __$$MyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? loginState});
+  $Res call({bool? loginState, LoginModel? loginModel});
+
+  @override
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -76,12 +99,17 @@ class __$$MyStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loginState = freezed,
+    Object? loginModel = freezed,
   }) {
     return _then(_$MyStateImpl(
       loginState: freezed == loginState
           ? _value.loginState
           : loginState // ignore: cast_nullable_to_non_nullable
               as bool?,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ));
   }
 }
@@ -89,14 +117,16 @@ class __$$MyStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MyStateImpl implements _MyState {
-  _$MyStateImpl({this.loginState});
+  _$MyStateImpl({this.loginState, this.loginModel});
 
   @override
   final bool? loginState;
+  @override
+  final LoginModel? loginModel;
 
   @override
   String toString() {
-    return 'MyState(loginState: $loginState)';
+    return 'MyState(loginState: $loginState, loginModel: $loginModel)';
   }
 
   @override
@@ -105,11 +135,13 @@ class _$MyStateImpl implements _MyState {
         (other.runtimeType == runtimeType &&
             other is _$MyStateImpl &&
             (identical(other.loginState, loginState) ||
-                other.loginState == loginState));
+                other.loginState == loginState) &&
+            (identical(other.loginModel, loginModel) ||
+                other.loginModel == loginModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loginState);
+  int get hashCode => Object.hash(runtimeType, loginState, loginModel);
 
   @JsonKey(ignore: true)
   @override
@@ -119,10 +151,13 @@ class _$MyStateImpl implements _MyState {
 }
 
 abstract class _MyState implements MyState {
-  factory _MyState({final bool? loginState}) = _$MyStateImpl;
+  factory _MyState({final bool? loginState, final LoginModel? loginModel}) =
+      _$MyStateImpl;
 
   @override
   bool? get loginState;
+  @override
+  LoginModel? get loginModel;
   @override
   @JsonKey(ignore: true)
   _$$MyStateImplCopyWith<_$MyStateImpl> get copyWith =>

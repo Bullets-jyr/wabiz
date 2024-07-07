@@ -78,4 +78,14 @@ class LoginViewModel extends _$LoginViewModel {
     }
     return false;
   }
+
+  bool signOut() {
+    state = state.copyWith(
+      isLogin: false,
+      email: '',
+      username: '',
+      password: '',
+    );
+    return true;
+  }
 }

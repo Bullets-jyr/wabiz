@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabiz/theme.dart';
 import 'package:wabiz/view_model/login/login_view_model.dart';
+import 'package:wabiz/view_model/my/my_view_model.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -27,7 +28,7 @@ class _MyPageState extends State<MyPage> {
       ),
       body: SingleChildScrollView(
         child: Consumer(builder: (context, ref, child) {
-          final loginState = ref.watch(loginViewModelProvider);
+          final myState = ref.watch(myViewModelProvider);
           return Column(
             children: [
               Container(
@@ -37,7 +38,7 @@ class _MyPageState extends State<MyPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Consumer(builder: (context, ref, child) {
-                      if (loginState.isLogin) {
+                      if (myState?.loginState ?? false) {
                         return Row(
                           children: [
                             const CircleAvatar(
@@ -49,10 +50,56 @@ class _MyPageState extends State<MyPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('${loginState.email}'),
+                                  Text(
+                                    '${myState?.loginModel?.email}',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                   const Gap(4),
-                                  Text('${loginState.username}'),
+                                  Text(
+                                    '${myState?.loginModel?.username} 님 안녕하세요?',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ],
+                              ),
+                            ),
+                            IconButton(
+                              tooltip: '로그아웃',
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: const Text('로그아웃 할까요?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('취소'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            ref
+                                                .read(loginViewModelProvider
+                                                    .notifier)
+                                                .signOut();
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('확인'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.logout,
                               ),
                             ),
                           ],
@@ -131,6 +178,17 @@ class _MyPageState extends State<MyPage> {
                     InkWell(
                       onTap: () {
                         // TODO: 로그인 처리 확인
+                        if (!(myState?.loginState ?? true)) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const AlertDialog(
+                              content: Text(
+                                '로그인이 필요한 서비스입니다.',
+                              ),
+                            ),
+                          );
+                          return;
+                        }
                         // TODO: 프로젝트 추가 화면으로 이동
                       },
                       child: Container(
