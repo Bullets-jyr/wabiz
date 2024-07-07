@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabiz/theme.dart';
+import 'package:wabiz/view_model/login/login_view_model.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -72,26 +74,44 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                   const Gap(24),
-                  GestureDetector(
-                    onTap: () async {},
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.secondary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '이메일로 로그인하기',
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                  Consumer(builder: (context, ref, child) {
+                    return GestureDetector(
+                      onTap: () async {
+                        if (emailTextController.text.isEmpty || passwordTextController.text.isEmpty) {
+                          return;
+                        }
+                        final result = await ref
+                            .read(loginViewModelProvider.notifier)
+                            .signIn(
+                              emailTextController.text.trim(),
+                              passwordTextController.text.trim(),
+                            );
+
+                        if (result != null) {
+                          if (context.mounted) {
+                            context.go('/my');
+                          }
+                        }
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: AppColors.secondary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '이메일로 로그인하기',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                   const Gap(24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,12 +125,11 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
-                          foregroundColor: AppColors.primary,
-                          textStyle: const TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.w500,
-                          )
-                        ),
+                            foregroundColor: AppColors.primary,
+                            textStyle: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w500,
+                            )),
                         onPressed: () {
                           context.push('/sign-up');
                         },

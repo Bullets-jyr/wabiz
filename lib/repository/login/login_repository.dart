@@ -17,6 +17,15 @@ class LoginRepository {
     return result;
   }
 
+  Future<ResponseModel?> signIn(LoginModel body) async {
+    final result = await loginApiService.signIn(body);
+    if (result.response.statusCode == 204) {
+      return null;
+    } else {
+      return ResponseModel.fromJson(result.data);
+    }
+  }
+
   Future<ResponseModel> checkEmail(LoginModel body) async {
     final result = await loginApiService.checkEmail(body);
     return result;
