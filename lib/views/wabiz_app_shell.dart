@@ -18,7 +18,9 @@ class WabizAppShell extends StatefulWidget {
 
 class _WabizAppShellState extends State<WabizAppShell> {
   void _onItemTapped(int index, BuildContext context) {
-    if (index == 3) {
+    if (index == 1) {
+      GoRouter.of(context).push('/add');
+    } else if (index == 3) {
       GoRouter.of(context).go('/my');
     } else {
       GoRouter.of(context).go('/home');

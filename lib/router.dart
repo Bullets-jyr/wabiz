@@ -7,6 +7,8 @@ import 'views/category/category_page.dart';
 import 'views/login/sign_in_page.dart';
 import 'views/login/sign_up_page.dart';
 import 'views/my/my_page.dart';
+import 'views/project/add_project_page.dart';
+import 'views/project/add_reward_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -62,6 +64,25 @@ final router = GoRouter(
           parentNavigatorKey: _shellNavigatorKey,
           builder: (context, state) {
             return const MyPage();
+          },
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/add',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) {
+        return const AddProjectPage();
+      },
+      routes: [
+        GoRoute(
+          path: 'reward/:id',
+          parentNavigatorKey: _rootNavigatorKey,
+          builder: (context, state) {
+            final projectId = state.extra as String;
+            return AddRewardPage(
+              projectId: projectId,
+            );
           },
         ),
       ],
