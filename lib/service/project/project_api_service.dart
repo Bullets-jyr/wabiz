@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../shared/network_provider.dart';
-import 'login_api.dart';
+import 'project_api.dart';
 
-part 'login_api_service.g.dart';
+part 'project_api_service.g.dart';
 
-@Riverpod(keepAlive: true)
-LoginApi loginApiService(LoginApiServiceRef ref) {
+@riverpod
+ProjectApi projectApiService(ProjectApiServiceRef ref) {
   final dio = ref.watch(dioProvider);
   var localhost = 'localhost';
 
@@ -18,7 +18,7 @@ LoginApi loginApiService(LoginApiServiceRef ref) {
     // localhost = '10.220.180.151';
   }
 
-  return LoginApi(
+  return ProjectApi(
     dio,
     baseUrl: 'http://$localhost:3000/api/v1',
   );
