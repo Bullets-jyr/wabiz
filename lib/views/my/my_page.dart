@@ -177,10 +177,10 @@ class _MyPageState extends State<MyPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        context.push(
-                          '/add/reward/0',
-                          extra: '0',
-                        );
+                        // context.push(
+                        //   '/add/reward/0',
+                        //   extra: '0',
+                        // );
                         // TODO: 로그인 처리 확인
                         if (!(myState?.loginState ?? true)) {
                           showDialog(
@@ -194,6 +194,9 @@ class _MyPageState extends State<MyPage> {
                           return;
                         }
                         // TODO: 프로젝트 추가 화면으로 이동
+                        context.push(
+                          '/add',
+                        );
                       },
                       child: Container(
                         height: 50,

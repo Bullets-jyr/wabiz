@@ -79,7 +79,7 @@ final router = GoRouter(
           path: 'reward/:id',
           parentNavigatorKey: _rootNavigatorKey,
           builder: (context, state) {
-            final projectId = state.pathParameters['']!;
+            final projectId = state.pathParameters['id']!;
             return AddRewardPage(
               projectId: projectId,
             );

@@ -32,7 +32,7 @@ abstract class ProjectApi {
     @Path() String userId,
   );
 
-  @GET('/project/reward/{id}')
+  @POST('/project/reward/{id}')
   Future<ResponseModel> createProjectReward(
     @Path() String id,
     @Body() RewardModel body,

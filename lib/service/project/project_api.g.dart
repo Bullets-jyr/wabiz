@@ -142,7 +142,7 @@ class _ProjectApi implements ProjectApi {
     final _data = body;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ResponseModel>(Options(
-      method: 'GET',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )

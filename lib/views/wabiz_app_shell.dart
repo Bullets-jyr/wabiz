@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wabiz/view_model/login/login_view_model.dart';
 
-class WabizAppShell extends StatefulWidget {
+class WabizAppShell extends ConsumerStatefulWidget {
   final Widget child;
   final int currentIndex;
 
@@ -13,13 +14,27 @@ class WabizAppShell extends StatefulWidget {
   });
 
   @override
-  State<WabizAppShell> createState() => _WabizAppShellState();
+  ConsumerState<WabizAppShell> createState() => _WabizAppShellState();
 }
 
-class _WabizAppShellState extends State<WabizAppShell> {
+class _WabizAppShellState extends ConsumerState<WabizAppShell> {
   void _onItemTapped(int index, BuildContext context) {
     if (index == 1) {
-      GoRouter.of(context).push('/add');
+      if (ref.read(loginViewModelProvider).isLogin) {
+        GoRouter.of(context).push('/add');
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text('안내'),
+            content: Text(
+              '로그인이 필요한 서비스입니다.',
+            ),
+          ),
+        );
+        return;
+      }
+
     } else if (index == 3) {
       GoRouter.of(context).go('/my');
     } else {
