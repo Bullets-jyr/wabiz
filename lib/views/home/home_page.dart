@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -170,8 +172,16 @@ class _HomePageState extends State<HomePage> {
                       child: ListView.builder(
                         itemCount: 10,
                         itemBuilder: (context, index) {
-                          final project = data?.projects[index];
+                          final project = data.projects[index];
                           return InkWell(
+                            onTap: () {
+                              context.push(
+                                '/detail',
+                                extra: json.encode(
+                                  project.toJson(),
+                                ),
+                              );
+                            },
                             child: Container(
                               margin: const EdgeInsets.only(
                                 bottom: 8,
@@ -214,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           project?.isOpen == 'close'
@@ -243,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                           decoration: BoxDecoration(
                                             color: AppColors.bg,
                                             borderRadius:
-                                            BorderRadius.circular(3),
+                                                BorderRadius.circular(3),
                                           ),
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 6,
