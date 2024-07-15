@@ -37,4 +37,9 @@ abstract class ProjectApi {
     @Path() String id,
     @Body() RewardModel body,
   );
+
+  @GET('/project/{id}')
+  Future<ProjectModel> getProjectByProjectId(
+    @Path() String id,
+  );
 }
