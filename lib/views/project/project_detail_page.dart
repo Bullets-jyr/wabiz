@@ -68,8 +68,10 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
       ),
       body: Consumer(
         builder: (context, ref, child) {
+          // final project = ref
+          //     .watch(fetchProjectByIdProvider(projectItemModel.id.toString()));
           final project = ref
-              .watch(fetchProjectByIdProvider(projectItemModel.id.toString()));
+              .watch(projectDetailViewModelProvider(projectItemModel.id.toString()));
           return project.when(
             data: (data) {
               return Column(
@@ -102,7 +104,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                     ? const NeverScrollableScrollPhysics()
                                     : const BouncingScrollPhysics(),
                                 child: ProjectDetailWidget(
-                                  data: data.data.first,
+                                  // data: data.data.first,
+                                  data: data,
                                 ),
                               ),
                             ),
