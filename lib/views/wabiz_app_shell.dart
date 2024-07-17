@@ -34,7 +34,8 @@ class _WabizAppShellState extends ConsumerState<WabizAppShell> {
         );
         return;
       }
-
+    } else if (index == 2) {
+      GoRouter.of(context).go('/favorite');
     } else if (index == 3) {
       GoRouter.of(context).go('/my');
     } else {

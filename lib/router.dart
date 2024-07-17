@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wabiz/views/favorite/favorite_page.dart';
 import 'package:wabiz/views/home/home_page.dart';
 import 'package:wabiz/views/wabiz_app_shell.dart';
 
@@ -36,6 +37,7 @@ final router = GoRouter(
         return WabizAppShell(
           // currentIndex: 0,
           currentIndex: switch (state.uri.path) {
+            var p when p.startsWith('/favorite') => 2,
             var p when p.startsWith('/my') => 3,
             _ => 0,
           },
@@ -59,6 +61,13 @@ final router = GoRouter(
               },
             ),
           ],
+        ),
+        GoRoute(
+          path: '/favorite',
+          parentNavigatorKey: _shellNavigatorKey,
+          builder: (context, state) {
+            return const FavoritePage();
+          },
         ),
         GoRoute(
           path: '/my',
