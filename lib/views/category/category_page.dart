@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:wabiz/theme.dart';
 import 'package:wabiz/view_model/category/category_view_model.dart';
+import 'package:wabiz/view_model/favorite/favorite_view_model.dart';
 
 class CategoryPage extends ConsumerStatefulWidget {
   final String categoryId;
@@ -338,11 +339,60 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                             Positioned(
                                               right: 2,
                                               top: 2,
-                                              child: IconButton(
-                                                onPressed: () {},
-                                                icon: const Icon(
-                                                  Icons.favorite_border,
-                                                ),
+                                              child: Consumer(
+                                                builder: (context, ref, child) {
+                                                  final favorites = ref.watch(
+                                                      favoriteViewModelProvider);
+
+                                                  final current = favorites
+                                                      .projects
+                                                      .where((element) =>
+                                                          element.id ==
+                                                          project.id)
+                                                      .toList();
+
+                                                  return IconButton(
+                                                    onPressed: () {
+                                                      if (current.isNotEmpty) {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return AlertDialog(
+                                                              content: Text(
+                                                                  '구독을 취소할까요?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    ref
+                                                                        .read(favoriteViewModelProvider
+                                                                            .notifier)
+                                                                        .removeItem(
+                                                                            project);
+                                                                    Navigator.of(context).pop();
+                                                                  },
+                                                                  child: Text(
+                                                                    '네',
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                        return;
+                                                      }
+
+                                                      ref.read(favoriteViewModelProvider.notifier).addItem(project);
+                                                    },
+                                                    icon: Icon(
+                                                      current.isNotEmpty
+                                                          ? Icons.favorite
+                                                          : Icons
+                                                              .favorite_border,
+                                                    ),
+                                                    color: current.isNotEmpty ? Colors.red : Colors.white,
+                                                  );
+                                                },
                                               ),
                                             ),
                                           ],
