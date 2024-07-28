@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+// 테마
 final ThemeData wabizDefaultTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
+  // 폰트
   fontFamily: "Pretendard",
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.white,
@@ -13,6 +15,7 @@ final ThemeData wabizDefaultTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.white,
     foregroundColor: Colors.black,
+    // Material 3
     surfaceTintColor: Colors.white,
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
@@ -68,6 +71,7 @@ final ThemeData wabizDefaultTheme = ThemeData(
   ),
 );
 
+// 색상 지정
 class AppColors extends Color {
   AppColors(super.value);
 

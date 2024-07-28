@@ -30,6 +30,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'wabiz',
       routerConfig: router,
+      // 테마 적용
       theme: wabizDefaultTheme,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
