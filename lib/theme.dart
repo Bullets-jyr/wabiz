@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 테마
+// 테마 (main, light)
 final ThemeData wabizDefaultTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   // 폰트

@@ -18,6 +18,7 @@ class WabizAppShell extends ConsumerStatefulWidget {
 }
 
 class _WabizAppShellState extends ConsumerState<WabizAppShell> {
+
   void _onItemTapped(int index, BuildContext context) {
     if (index == 1) {
       if (ref.read(loginViewModelProvider).isLogin) {
@@ -42,12 +43,15 @@ class _WabizAppShellState extends ConsumerState<WabizAppShell> {
       GoRouter.of(context).go('/home');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ex) HomePage 위젯이 child로 넘어옵니다.
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.currentIndex,
+        // BottomNavigationBar의 메뉴가 눌리면 onTap이라는 콜백이 발생하게 됩니다.
         onTap: (int idx) => _onItemTapped(idx, context),
         items: [
           BottomNavigationBarItem(

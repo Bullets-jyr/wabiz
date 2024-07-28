@@ -31,9 +31,14 @@ class MainApp extends StatelessWidget {
       title: 'wabiz',
       routerConfig: router,
       // 테마 적용
+      // main
       theme: wabizDefaultTheme,
+      // dark
       darkTheme: ThemeData.dark(),
+      // using provider
+      // ThemeMode.light == theme: wabizDefaultTheme
       themeMode: ThemeMode.light,
+      // theme 변경될 때, 적용할 애니메이션 효과
       themeAnimationStyle: AnimationStyle(
         curve: Curves.easeInCirc,
         duration: Duration(microseconds: 350),
