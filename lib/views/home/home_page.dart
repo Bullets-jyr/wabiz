@@ -190,10 +190,12 @@ class _HomePageState extends State<HomePage> {
                                 top: 20,
                               ),
                               decoration: BoxDecoration(
+                                // ?
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
+                                    // 그림자의 x축, y축
                                     offset: const Offset(0, 8),
                                     color: Colors.black.withOpacity(.1),
                                     blurRadius: 30,
