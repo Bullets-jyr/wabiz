@@ -22,7 +22,9 @@ Dio dio(DioRef ref) {
     headers: {
       'Content-type': 'application/json',
     },
+    // request
     connectTimeout: const Duration(seconds: 30),
+    // response
     receiveTimeout: const Duration(seconds: 30),
   );
 

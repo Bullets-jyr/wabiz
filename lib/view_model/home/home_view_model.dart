@@ -8,17 +8,22 @@ import '../../shared/model/project_category.dart';
 part 'home_view_model.freezed.dart';
 part 'home_view_model.g.dart';
 
+// Home 화면에서만 관리할 수 있는 state
 @freezed
 class HomeState with _$HomeState {
   factory HomeState({
+    // null일 수도 있기 때문에 default값을 지정합니다.
     @Default([]) List<HomeItemModel> projects,
   }) = _HomeState;
+
+  // projects 값을 여기서 초기화 해줘도 됩니다. ex) .init()
 }
 
 @riverpod
 class HomeViewModel extends _$HomeViewModel {
   HomeRepository? homeRepository;
 
+  // 초기화
   @override
   HomeState? build() {
     homeRepository = ref.watch(homeRepositoryProvider);
@@ -38,10 +43,13 @@ class HomeViewModel extends _$HomeViewModel {
   }
 }
 
+// return AsyncValue
 @riverpod
 Future<HomeModel> fetchHomeProject(FetchHomeProjectRef ref) async {
   try {
+    // repository를 바로 읽어오는 방법
     // final result = ref.watch(homeRepositoryProvider).getHomeProject();
+
     final result = await ref.watch(homeViewModelProvider.notifier).fetchHomeData();
     return result ?? HomeModel();
   } catch(e) {

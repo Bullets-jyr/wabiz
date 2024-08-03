@@ -11,6 +11,7 @@ class HomeModel with _$HomeModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory HomeModel({
     String? status,
+    // @JsonKey(name: 'total_count')
     int? totalCount,
     @Default([]) List<HomeItemModel> projects,
   }) = _HomeModel;
