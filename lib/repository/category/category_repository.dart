@@ -11,6 +11,15 @@ class CategoryRepository {
 
   CategoryRepository(this.categoryApiService);
 
+  Future<CategoryModel> getProjectsByCategoryId(
+    String categoryId,
+  ) async {
+    final result = await categoryApiService.getProjectsByCategoryId(
+      categoryId,
+    );
+    return result;
+  }
+
   Future<CategoryModel> getCategoryProjects(
     String categoryId,
     String typeId,
@@ -18,15 +27,6 @@ class CategoryRepository {
     final result = await categoryApiService.getProjectsByProjectType(
       categoryId,
       typeId,
-    );
-    return result;
-  }
-
-  Future<CategoryModel> getProjectsByCategoryId(
-    String categoryId,
-  ) async {
-    final result = await categoryApiService.getProjectsByCategoryId(
-      categoryId,
     );
     return result;
   }

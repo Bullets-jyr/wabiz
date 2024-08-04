@@ -9,12 +9,14 @@ part 'category_api.g.dart';
 abstract class CategoryApi {
   factory CategoryApi(Dio dio, {String baseUrl}) = _CategoryApi;
 
+  // 최상단
   // Path Parameters
   @GET('/category/{categoryId}')
   Future<CategoryModel> getProjectsByCategoryId(
     @Path() String? categoryId,
   );
 
+  // ProjectType이 눌렸을 때, 호출
   // Path Parameters
   @GET('/category/{categoryId}/{projectTypeId}')
   Future<CategoryModel> getProjectsByProjectType(
