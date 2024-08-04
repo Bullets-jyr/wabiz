@@ -43,6 +43,7 @@ class HomeViewModel extends _$HomeViewModel {
   }
 }
 
+// ViewModel없이 Functional한 방법
 // return AsyncValue
 @riverpod
 Future<HomeModel> fetchHomeProject(FetchHomeProjectRef ref) async {

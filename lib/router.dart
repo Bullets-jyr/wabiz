@@ -50,6 +50,7 @@ final router = GoRouter(
           parentNavigatorKey: _shellNavigatorKey,
           builder: (context, state) => const HomePage(),
           routes: [
+            // 홈에서 ~로 이동
             GoRoute(
               path: 'category/:id',
               builder: (context, state) {

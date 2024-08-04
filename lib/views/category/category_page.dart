@@ -89,6 +89,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // mainAxisAlignment: MainAxisAlignment.end, 대신 Spacer()를 사용할 수도 있음
                         // Spacer(),
                         Text(
                           '${titleProjects.title}',
@@ -128,7 +129,6 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
               );
             }),
           ),
-
           /// 탭
           Container(
             height: 110,
@@ -254,6 +254,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down,
                                 ),
+                                // underline 제거
                                 underline: const SizedBox.shrink(),
                               ),
                               const Gap(24),
