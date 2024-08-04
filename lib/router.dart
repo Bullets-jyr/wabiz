@@ -51,6 +51,7 @@ final router = GoRouter(
           builder: (context, state) => const HomePage(),
           routes: [
             // 홈에서 ~로 이동
+            // nested된 router 앞에는 /를 붙이지 않습니다.
             GoRoute(
               path: 'category/:id',
               builder: (context, state) {

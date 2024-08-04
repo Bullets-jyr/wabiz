@@ -22,9 +22,11 @@ enum EnumCategoryProjectType {
 @freezed
 class CategoryState with _$CategoryState {
   factory CategoryState({
+    // 밑줄에 대한 UI처리를 위해서...
     ProjectType? selectedType,
     @Default(EnumCategoryProjectType.recommend)
     EnumCategoryProjectType? projectFilter,
+    // for 데이터 캐싱
     @Default([]) List<CategoryItemModel> projects,
     // 받는 값을 AsyncValue로 관리하기 위해서...
     @Default(AsyncValue.loading())
@@ -45,19 +47,23 @@ class CategoryViewModel extends _$CategoryViewModel {
     );
   }
 
+  // update project type
   updateType(ProjectType type) {
     state = state.copyWith(
       selectedType: type,
+      // 초기화?!
       projectFilter: EnumCategoryProjectType.recommend,
     );
   }
 
+  // 서버에 요청하지 않고 데이터 캐싱된 걸 가지고 해봅시다.
   updateProjectFilter(EnumCategoryProjectType filter) {
     state = state.copyWith(
       projectState: AsyncValue.loading(),
       projectFilter: filter,
     );
 
+    // 캐싱된 값을 가져옵니다.
     final _projects = [...state.projects];
 
     if (filter == EnumCategoryProjectType.lowFunded) {
@@ -117,8 +123,8 @@ Future<List<ProjectType>> fetchTypeTabs(FetchTypeTabsRef ref) async {
   await Future.delayed(Duration(milliseconds: 500));
   return [
     ProjectType(id: 0, type: '전체', imagePath: 'assets/icons/type/all.svg'),
-    ProjectType(
-        id: 0, type: 'BEST 펀딩', imagePath: 'assets/icons/type/best.svg'),
+    ProjectType(id: 0, type: 'BEST 펀딩', imagePath: 'assets/icons/type/best.svg'),
+
     ProjectType(id: 1, type: '테크가전', imagePath: 'assets/icons/type/1.svg'),
     ProjectType(id: 2, type: '패션', imagePath: 'assets/icons/type/2.svg'),
     ProjectType(id: 3, type: '뷰티', imagePath: 'assets/icons/type/3.svg'),
@@ -130,6 +136,7 @@ Future<List<ProjectType>> fetchTypeTabs(FetchTypeTabsRef ref) async {
   ];
 }
 
+// Functional 방식
 @riverpod
 Future<CategoryModel> fetchCategoryProjects(
   FetchCategoryProjectsRef ref,
@@ -141,6 +148,7 @@ Future<CategoryModel> fetchCategoryProjects(
   return response;
 }
 
+// Functional 방식
 @riverpod
 Future<CategoryModel> fetchCategoryProjectsByType(
   FetchCategoryProjectsByTypeRef ref,

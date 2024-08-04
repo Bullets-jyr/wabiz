@@ -28,6 +28,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
   @override
   void initState() {
     super.initState();
+    // 화면이 초기화 되었을 때!
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(categoryViewModelProvider.notifier)
@@ -79,6 +80,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                         image: CachedNetworkImageProvider(
                             titleProjects.thumbnail ?? ''),
                         fit: BoxFit.cover,
+                        // 텍스트 가시성 확보
                         colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(.2),
                           BlendMode.darken,
@@ -138,10 +140,12 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
             padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
             child: Consumer(
               builder: (context, ref, child) {
+                // Functional 방식
                 final types = ref.watch(fetchTypeTabsProvider);
                 return types.when(
                   data: (data) {
                     return Consumer(builder: (context, ref, child) {
+                      // for selectedType
                       // CategoryState
                       final vm = ref.watch(categoryViewModelProvider);
                       return ListView.builder(
@@ -208,7 +212,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                   },
                   loading: () {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator.adaptive(),
                     );
                   },
                 );
