@@ -153,13 +153,14 @@ class _MyPageState extends State<MyPage> {
                             height: 28,
                             colorFilter: const ColorFilter.mode(
                               Colors.white,
+                              // ?
                               BlendMode.srcIn,
                             ),
                           ),
                         ),
                         const Gap(20),
                         const Text(
-                          '새로운 도전을\n시작해보세요,',
+                          '새로운 도전을\n시작해보세요',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 13,
