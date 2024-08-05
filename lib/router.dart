@@ -19,6 +19,7 @@ final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/home',
   routes: [
+    // 로그인
     GoRoute(
       path: '/login',
       parentNavigatorKey: _rootNavigatorKey,

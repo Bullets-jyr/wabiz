@@ -77,7 +77,8 @@ class _SignInPageState extends State<SignInPage> {
                   Consumer(builder: (context, ref, child) {
                     return GestureDetector(
                       onTap: () async {
-                        if (emailTextController.text.isEmpty || passwordTextController.text.isEmpty) {
+                        if (emailTextController.text.isEmpty ||
+                            passwordTextController.text.isEmpty) {
                           return;
                         }
                         final result = await ref
@@ -125,11 +126,12 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
-                            foregroundColor: AppColors.primary,
-                            textStyle: const TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                            )),
+                          foregroundColor: AppColors.primary,
+                          textStyle: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         onPressed: () {
                           context.push('/sign-up');
                         },
