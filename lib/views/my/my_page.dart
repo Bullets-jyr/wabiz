@@ -28,6 +28,7 @@ class _MyPageState extends State<MyPage> {
       ),
       body: SingleChildScrollView(
         child: Consumer(builder: (context, ref, child) {
+          // final loginState = ref.watch(loginViewModelProvider);
           final myState = ref.watch(myViewModelProvider);
           return Column(
             children: [

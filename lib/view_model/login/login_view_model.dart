@@ -80,6 +80,7 @@ class LoginViewModel extends _$LoginViewModel {
     return false;
   }
 
+  // 로그아웃
   bool signOut() {
     state = state.copyWith(
       isLogin: false,

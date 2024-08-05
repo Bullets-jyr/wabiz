@@ -22,6 +22,7 @@ class MyState with _$MyState {
 class MyViewModel extends _$MyViewModel {
   @override
   MyState? build() {
+    // loginViewModelProvider가 변경될 때마다 build가 됩니다.
     final status = ref.watch(loginViewModelProvider);
     return MyState(
       loginState: status.isLogin,

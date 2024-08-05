@@ -16,6 +16,7 @@ abstract class LoginApi {
     @Body() LoginModel body,
   );
 
+  // HttpResponse<dynamic>
   @POST('/signin')
   Future<HttpResponse<dynamic>> signIn(
     @Body() LoginModel body,
