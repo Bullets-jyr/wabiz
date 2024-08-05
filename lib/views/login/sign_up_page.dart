@@ -20,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController password2TextController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
 
+  // 등록 불가능한 아이디 상태
   bool validated = false;
 
   @override
@@ -221,70 +222,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const Gap(20),
-                Consumer(builder: (context, ref, child) {
-                  return GestureDetector(
-                    onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState?.save();
-                        if (!validated) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                content: const Text('이메일 중복확인을 체크해주세요'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      context.pop();
-                                      context.pop();
-                                    },
-                                    child: const Text(
-                                      '확인',
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                          return;
-                        }
-                        final result = await ref
-                            .read(loginViewModelProvider.notifier)
-                            .signUp(
-                              LoginModel(
-                                email: emailTextController.text.trim(),
-                                password: passwordTextController.text.trim(),
-                                username: usernameTextController.text.trim(),
-                              ),
-                            );
-
-                        if (result) {
-                          if (context.mounted) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                content: const Text('등록 성공: 로그인을 진행해주세요.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      context.pop();
-                                      context.pop();
-                                    },
-                                    child: const Text(
-                                      '확인',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }
-                        } else {
-                          if (context.mounted) {
+                Consumer(
+                  builder: (context, ref, child) {
+                    return GestureDetector(
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState?.save();
+                          if (!validated) {
                             showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  content: const Text('신규 회원가입 실패'),
+                                  content: const Text('이메일 중복확인을 체크해주세요'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -299,29 +248,84 @@ class _SignUpPageState extends State<SignUpPage> {
                                 );
                               },
                             );
+                            return;
+                          }
+                          final result = await ref
+                              .read(loginViewModelProvider.notifier)
+                              .signUp(
+                                LoginModel(
+                                  email: emailTextController.text.trim(),
+                                  password: passwordTextController.text.trim(),
+                                  username: usernameTextController.text.trim(),
+                                ),
+                              );
+
+                          if (result) {
+                            if (context.mounted) {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  content: const Text('등록 성공: 로그인을 진행해주세요.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        context.pop();
+                                        context.pop();
+                                      },
+                                      child: const Text(
+                                        '확인',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          } else {
+                            // context.mounted: 특히 "비동기"인 경우는 context가 살아있는지 체크해야합니다.
+                            if (context.mounted) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: const Text('신규 회원가입 실패'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          context.pop();
+                                          context.pop();
+                                        },
+                                        child: const Text(
+                                          '확인',
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           }
                         }
-                      }
-                    },
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(.55),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '약관 동의 후 가입 완료하기',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withOpacity(.55),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '약관 동의 후 가입 완료하기',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  },
+                ),
               ],
             ),
           ),

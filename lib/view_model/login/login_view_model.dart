@@ -41,6 +41,7 @@ class LoginViewModel extends _$LoginViewModel {
 
   Future<bool> signUp(LoginModel body) async {
     final result = await ref.watch(loginRepositoryProvider).signUp(body);
+    // TODO: status code 400일 경우 예외처리
     if (result.status == 'ok') {
       return true;
     }
