@@ -24,6 +24,7 @@ final router = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const SignInPage(),
     ),
+    // 회원가입
     GoRoute(
       path: '/sign-up',
       parentNavigatorKey: _rootNavigatorKey,
