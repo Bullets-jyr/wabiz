@@ -8,6 +8,7 @@ part 'my_view_model.freezed.dart';
 
 part 'my_view_model.g.dart';
 
+// 상태관리
 @freezed
 class MyState with _$MyState {
   factory MyState({
@@ -16,6 +17,7 @@ class MyState with _$MyState {
   }) = _MyState;
 }
 
+// NotifierProvider
 @riverpod
 class MyViewModel extends _$MyViewModel {
   @override

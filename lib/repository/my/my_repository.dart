@@ -3,10 +3,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'my_repository.g.dart';
 
 abstract class MyRepository {
+  // 로그인이 되었을 때
   Future getProjectsByUserId(String userId);
 
+  // 프로젝트 상태 전환
   Future updateProjectOpenState(String id);
 
+  // 프로젝트 삭제
   Future deleteProject(String id);
 }
 
