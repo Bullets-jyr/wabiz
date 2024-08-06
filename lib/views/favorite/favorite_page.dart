@@ -33,7 +33,7 @@ class _FavoritePageState extends State<FavoritePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     '관심 있는 소식만 모았어요',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -42,7 +42,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.search,
                     ),
                   ),
@@ -51,17 +51,17 @@ class _FavoritePageState extends State<FavoritePage> {
             ),
             Container(
               height: 32,
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: ListView.builder(
                 itemCount: tabs.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.only(right: 12),
-                    padding: EdgeInsets.symmetric(
+                    margin: const EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 8,
                     ),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.newBg,
                     ),
                     child: Center(
@@ -73,13 +73,13 @@ class _FavoritePageState extends State<FavoritePage> {
                 },
               ),
             ),
-            Gap(12),
+            const Gap(12),
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {
                   final favorites = ref.watch(favoriteViewModelProvider);
                   if (favorites.projects.isEmpty) {
-                    return Center(
+                    return const Center(
                       child: Text('등록된 관심(구독) 프로젝트가 없어요.'),
                     );
                   }
@@ -88,7 +88,7 @@ class _FavoritePageState extends State<FavoritePage> {
                     itemBuilder: (context, index) {
                       final project = favorites.projects[index];
                       return Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           left: 16,
                           right: 16,
                           top: 20,
@@ -99,7 +99,7 @@ class _FavoritePageState extends State<FavoritePage> {
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
-                              offset: Offset(0, 8),
+                              offset: const Offset(0, 8),
                               color: Colors.black.withOpacity(.1),
                               blurRadius: 30,
                               spreadRadius: 4,
@@ -113,7 +113,7 @@ class _FavoritePageState extends State<FavoritePage> {
                               height: 190,
                               decoration: BoxDecoration(
                                 color: Colors.amber,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   topLeft: Radius.circular(10),
                                 ),
@@ -135,14 +135,14 @@ class _FavoritePageState extends State<FavoritePage> {
                                           context: context,
                                           builder: (context) {
                                             return AlertDialog(
-                                              content: Text('구독을 취소할까요?'),
+                                              content: const Text('구독을 취소할까요?'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {
                                                     ref.read(favoriteViewModelProvider.notifier).removeItem(project);
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: Text(
+                                                  child: const Text(
                                                     '네',
                                                   ),
                                                 ),
@@ -151,7 +151,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                           },
                                         );
                                       },
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.favorite,
                                       ),
                                       color: Colors.red,
@@ -167,17 +167,17 @@ class _FavoritePageState extends State<FavoritePage> {
                                 children: [
                                   Text(
                                     '${project.totalFundedCount}명이 기다려요',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 18,
                                       color: AppColors.primary,
                                     ),
                                   ),
-                                  Gap(8),
+                                  const Gap(8),
                                   Text(
                                     '${project.title}',
                                   ),
-                                  Gap(24),
+                                  const Gap(24),
                                   Text(
                                     '${project.owner}',
                                     style: TextStyle(
@@ -186,13 +186,13 @@ class _FavoritePageState extends State<FavoritePage> {
                                       color: AppColors.wabizGray[500]!,
                                     ),
                                   ),
-                                  Gap(12),
+                                  const Gap(12),
                                   Container(
                                     decoration: BoxDecoration(
                                       color: AppColors.bg,
                                       borderRadius: BorderRadius.circular(3),
                                     ),
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 6,
                                       vertical: 4,
                                     ),
