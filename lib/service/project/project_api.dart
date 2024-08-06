@@ -32,6 +32,7 @@ abstract class ProjectApi {
     @Path() String userId,
   );
 
+  // id는 projectId를 의미합니다.
   @POST('/project/reward/{id}')
   Future<ResponseModel> createProjectReward(
     @Path() String id,

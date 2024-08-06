@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:wabiz/model/project/project_model.dart';
 import 'package:wabiz/shared/model/project_type.dart';
 import 'package:wabiz/theme.dart';
-import 'package:wabiz/view_model/category/category_view_model.dart';
 import 'package:wabiz/view_model/login/login_view_model.dart';
 import 'package:wabiz/view_model/project/project_view_model.dart';
 
@@ -442,6 +439,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                             deadline: deadlineTextEditingController.text.trim(),
                             description:
                                 descriptionTextEditingController.text.trim(),
+                            // int.tryParse: exception 방지
                             price: int.tryParse(
                                 priceTextEditingController.text.trim()),
                             projectClass: enumProjectClass.title,

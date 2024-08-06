@@ -8,6 +8,8 @@ import 'package:wabiz/shared/model/project_type.dart';
 
 part 'project_view_model.g.dart';
 
+// 프로젝트 정보 > 카테고리 선택
+// FutureProvider
 @riverpod
 Future<List<ProjectType>> fetchProjectTypes(FetchProjectTypesRef ref) async {
   await Future.delayed(Duration(milliseconds: 350));
