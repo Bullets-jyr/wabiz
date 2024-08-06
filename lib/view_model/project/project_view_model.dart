@@ -57,12 +57,15 @@ Future<List<ProjectType>> fetchProjectTypes(FetchProjectTypesRef ref) async {
   ];
 }
 
+// Functional
+// 프로젝트 조회
 @riverpod
 Future<ProjectModel> fetchProjectById(FetchProjectByIdRef ref, String id) async {
   final result = await ref.watch(projectRepositoryProvider).getProjectByProjectId(id);
   return result;
 }
 
+// Class
 @riverpod
 class ProjectDetailViewModel extends _$ProjectDetailViewModel {
   @override
