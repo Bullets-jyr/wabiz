@@ -25,15 +25,17 @@ class AddProjectPage extends StatefulWidget {
 }
 
 class _AddProjectPageState extends State<AddProjectPage> {
+  // 기본값
   EnumProjectClass enumProjectClass = EnumProjectClass.funding;
   TextEditingController priceTextEditingController = TextEditingController();
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController makerTextEditingController = TextEditingController();
   TextEditingController deadlineTextEditingController = TextEditingController();
-  TextEditingController descriptionTextEditingController =
-      TextEditingController();
+  TextEditingController descriptionTextEditingController = TextEditingController();
 
+  // 카테고리 페이지에서 사용하는 모델
   ProjectType? projectType;
+  // 이미지
   XFile? image;
 
   @override
@@ -274,6 +276,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                   hintText: '목표 금액을 입력해 주세요.',
                 ),
                 keyboardType: TextInputType.number,
+                // 정규식
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],

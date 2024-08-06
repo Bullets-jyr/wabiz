@@ -82,6 +82,7 @@ final router = GoRouter(
         ),
       ],
     ),
+    // 프로젝트 추가
     GoRoute(
       path: '/add',
       parentNavigatorKey: _rootNavigatorKey,
@@ -89,6 +90,7 @@ final router = GoRouter(
         return const AddProjectPage();
       },
       routes: [
+        // 리워드 추가
         GoRoute(
           path: 'reward/:id',
           parentNavigatorKey: _rootNavigatorKey,

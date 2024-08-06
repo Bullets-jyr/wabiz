@@ -89,10 +89,10 @@ class _AddRewardPageState extends State<AddRewardPage> {
               const Gap(12),
               TextFormField(
                 controller: priceTextEditingController,
+                keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],
-                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText: '0',
                 ),
@@ -203,9 +203,10 @@ class _AddRewardPageState extends State<AddRewardPage> {
                                 child: Text(
                                   '추가',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                      fontSize: 16),
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),

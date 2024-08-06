@@ -1,3 +1,4 @@
+// For RadioGroup
 enum EnumProjectClass {
   funding('펀딩', '첫 출시에요.'),
   freeOrder('프리오더', '기존에 출시된 제품,서비스,콘텐츠를 특별한 혜택으로 공개해요.'),
