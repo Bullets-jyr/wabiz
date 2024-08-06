@@ -131,6 +131,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
               );
             }),
           ),
+
           /// 탭
           Container(
             height: 110,
@@ -364,7 +365,8 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                                           builder: (context) {
                                                             return AlertDialog(
                                                               content: Text(
-                                                                  '구독을 취소할까요?'),
+                                                                '구독을 취소할까요?',
+                                                              ),
                                                               actions: [
                                                                 TextButton(
                                                                   onPressed:
@@ -374,7 +376,9 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                                                             .notifier)
                                                                         .removeItem(
                                                                             project);
-                                                                    Navigator.of(context).pop();
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
                                                                   },
                                                                   child: Text(
                                                                     '네',
@@ -387,7 +391,11 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                                         return;
                                                       }
 
-                                                      ref.read(favoriteViewModelProvider.notifier).addItem(project);
+                                                      ref
+                                                          .read(
+                                                              favoriteViewModelProvider
+                                                                  .notifier)
+                                                          .addItem(project);
                                                     },
                                                     icon: Icon(
                                                       current.isNotEmpty
@@ -395,7 +403,9 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                                           : Icons
                                                               .favorite_border,
                                                     ),
-                                                    color: current.isNotEmpty ? Colors.red : Colors.white,
+                                                    color: current.isNotEmpty
+                                                        ? Colors.red
+                                                        : Colors.white,
                                                   );
                                                 },
                                               ),

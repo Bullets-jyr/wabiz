@@ -10,11 +10,15 @@ import 'views/home/home_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // FutureProvider, AsyncNotifierProvider
+  // Async
+  // SharedPreferences
   final pref = await SharedPreferences.getInstance();
 
   runApp(
     ProviderScope(
       overrides: [
+        // 값을 override해서 초기화 시킵니다.
         sharedPreferencesProvider.overrideWithValue(pref),
       ],
       child: MainApp(),
