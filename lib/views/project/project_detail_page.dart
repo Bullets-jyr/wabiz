@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:wabiz/model/category/category_model.dart';
 import 'package:wabiz/model/project/project_model.dart';
 import 'package:wabiz/theme.dart';
@@ -47,6 +45,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   @override
   void dispose() {
     // TODO: implement dispose
+    // ValueNotifier dispose
     isMore.dispose();
     super.dispose();
   }
@@ -87,6 +86,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           projectItemModel.thumbnail ?? '',
                         ),
                         fit: BoxFit.cover,
+                        // image filter
                         colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(.2),
                           BlendMode.darken,
@@ -102,6 +102,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                           children: [
                             Positioned.fill(
                               child: SingleChildScrollView(
+                                // 스크롤 가능 여부
                                 physics: !value
                                     ? const NeverScrollableScrollPhysics()
                                     : const BouncingScrollPhysics(),
@@ -120,15 +121,16 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                   height: 100,
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                        colors: [
-                                          Colors.white,
-                                          Colors.white,
-                                          Colors.white,
-                                          Colors.white,
-                                          Colors.white.withOpacity(.1),
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter),
+                                      colors: [
+                                        Colors.white,
+                                        Colors.white,
+                                        Colors.white,
+                                        Colors.white,
+                                        Colors.white.withOpacity(.1),
+                                      ],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -138,6 +140,11 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                 right: 16,
                                 bottom: 16,
                                 child: GestureDetector(
+                                  // onTap: () {
+                                  //   setState(() {
+                                  //     isMore = true;
+                                  //   });
+                                  // },
                                   onTap: () => isMore.value = true,
                                   child: Container(
                                     height: 50,
@@ -277,7 +284,7 @@ class _BottomAppBar extends ConsumerWidget {
                   icon: Icon(
                     current.isNotEmpty ? Icons.favorite : Icons.favorite_border,
                   ),
-                  color: current.isNotEmpty ? Colors.red: Colors.black,
+                  color: current.isNotEmpty ? Colors.red : Colors.black,
                 ),
                 const Text('1만+'),
               ],

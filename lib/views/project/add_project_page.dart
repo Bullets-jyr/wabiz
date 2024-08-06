@@ -432,6 +432,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                         .read(projectViewModelProvider.notifier)
                         .createProject(
                           ProjectItemModel(
+                            // 홈메뉴 상단의 카테고리
                             categoryId: 1,
                             projectTypeId: projectType?.id,
                             title: titleTextEditingController.text.trim(),

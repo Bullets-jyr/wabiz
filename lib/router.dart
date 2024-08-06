@@ -66,6 +66,7 @@ final router = GoRouter(
             ),
           ],
         ),
+        // 구독
         GoRoute(
           path: '/favorite',
           parentNavigatorKey: _shellNavigatorKey,
@@ -73,6 +74,7 @@ final router = GoRouter(
             return const FavoritePage();
           },
         ),
+        // 마이페이지
         GoRoute(
           path: '/my',
           parentNavigatorKey: _shellNavigatorKey,
@@ -104,9 +106,11 @@ final router = GoRouter(
         ),
       ],
     ),
+    // 프로젝트 상세
     GoRoute(
       path: '/detail',
       builder: (context, state) {
+        // json data
         final project = state.extra as String;
         return ProjectDetailPage(
           project: project,

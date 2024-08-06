@@ -8,7 +8,10 @@ import '../../../theme.dart';
 class ProjectDetailWidget extends StatelessWidget {
   final ProjectItemModel data;
 
-  const ProjectDetailWidget({super.key, required this.data});
+  const ProjectDetailWidget({
+    super.key,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,7 @@ class ProjectDetailWidget extends StatelessWidget {
               const Gap(12),
               Row(
                 children: [
+                  // 달성률 계산 (백분율)
                   Text(
                     '${NumberFormat('###,###,###').format(
                       (((data.totalFunded ?? 0) / (data.price ?? 1)) * 100),
@@ -61,6 +65,7 @@ class ProjectDetailWidget extends StatelessWidget {
                     ),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    // DateTime.parse(data.deadline ?? ''): DateTime
                     child: Text(
                       '${DateTime.parse(data.deadline ?? '').difference(DateTime.now()).inDays}일 남음',
                       style: const TextStyle(

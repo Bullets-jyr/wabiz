@@ -179,6 +179,7 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {
                                 context.push(
                                   '/detail',
+                                  // encode를 통해서 문자열로 만들어줍니다.
                                   extra: json.encode(
                                     project.toJson(),
                                   ),
