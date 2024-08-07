@@ -8,9 +8,10 @@ import 'package:gap/gap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:wabiz/domain/use_cases/home/fetch_home_categories.dart';
 import 'package:wabiz/shared/widgets/project_large_widget.dart';
 import 'package:wabiz/theme.dart';
-import 'package:wabiz/view_model/home/home_view_model.dart';
+import 'package:wabiz/presentation/notifiers/home/home_notifier.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -126,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                             AsyncError(:final error) =>
-                              Text('${error.toString()}'),
+                              Text(error.toString()),
                             _ => const Center(
                                 child: CircularProgressIndicator(),
                               )
@@ -155,7 +156,8 @@ class _HomePageState extends State<HomePage> {
                   //     ref.watch(homeViewModelProvider.notifier).fetchHomeData();
 
                   // AsyncValue
-                  final homeData = ref.watch(fetchHomeProjectProvider);
+                  // final homeData = ref.watch(fetchHomeProjectProvider);
+                  final homeData = ref.watch(homeNotifierProvider);
 
                   return homeData.when(
                     data: (data) {
@@ -300,25 +302,27 @@ class _HomePageState extends State<HomePage> {
                             error as ErrorHandler,
                             error as DioException,
                             ref,
-                            fetchHomeProjectProvider,
+                            // fetchHomeProjectProvider,
+                            homeNotifierProvider,
                           );
                           // return Center(
                           //   child: Text("${error.toString()}\n${trace.toString()}"),
                           // );
                         case ConnectionError():
                           return Center(
-                            child: Text("${error.toString()}"),
+                            child: Text(error.toString()),
                           );
                         case UnsupportedError():
                           return Center(
-                            child: Text("${error.toString()}"),
+                            child: Text(error.toString()),
                           );
                       }
                       return globalErrorHandler(
                         error as ErrorHandler,
                         error as DioException,
                         ref,
-                        fetchHomeProjectProvider,
+                        // fetchHomeProjectProvider,
+                        homeNotifierProvider,
                       );
                     },
                     loading: () => const Center(

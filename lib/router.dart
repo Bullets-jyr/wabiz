@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabiz/views/favorite/favorite_page.dart';
-import 'package:wabiz/views/home/home_page.dart';
+import 'package:wabiz/presentation/views/home/home_page.dart';
 import 'package:wabiz/views/wabiz_app_shell.dart';
 
 import 'views/category/category_page.dart';

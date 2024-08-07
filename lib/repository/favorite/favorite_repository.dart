@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wabiz/shared/shared_pref_provider.dart';
+import 'package:wabiz/data/data_source/local/shared_pref_provider.dart';
 
 part 'favorite_repository.g.dart';
 

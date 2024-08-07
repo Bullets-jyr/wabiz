@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../model/home/home_model.dart';
+import 'package:wabiz/data/model/home/home_model.dart';
 
 part 'home_api.g.dart';
 
