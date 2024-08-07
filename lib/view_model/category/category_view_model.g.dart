@@ -6,7 +6,7 @@ part of 'category_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchTypeTabsHash() => r'd7c8f457491a1226347dca861d1d1d0d6925739d';
+String _$fetchTypeTabsHash() => r'df5fb3cd7acf46a24f2316b4e640bcab5d64afad';
 
 /// See also [fetchTypeTabs].
 @ProviderFor(fetchTypeTabs)
@@ -311,7 +311,7 @@ class _FetchCategoryProjectsByTypeProviderElement
       (origin as FetchCategoryProjectsByTypeProvider).categoryId;
 }
 
-String _$categoryViewModelHash() => r'b8d6af89f583a45afb64f5f910d5b8fdb027a191';
+String _$categoryViewModelHash() => r'1656625f9becc22a6f1a5c19aa326fabce684bac';
 
 /// See also [CategoryViewModel].
 @ProviderFor(CategoryViewModel)

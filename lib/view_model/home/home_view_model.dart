@@ -1,11 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wabiz/repository/home/home_repository.dart';
+import 'package:wabiz/views/home/home_page.dart';
 
 import '../../model/home/home_model.dart';
 import '../../shared/model/project_category.dart';
 
 part 'home_view_model.freezed.dart';
+
 part 'home_view_model.g.dart';
 
 // Home 화면에서만 관리할 수 있는 state
@@ -16,7 +19,7 @@ class HomeState with _$HomeState {
     @Default([]) List<HomeItemModel> projects,
   }) = _HomeState;
 
-  // projects 값을 여기서 초기화 해줘도 됩니다. ex) .init()
+// projects 값을 여기서 초기화 해줘도 됩니다. ex) .init()
 }
 
 @riverpod
@@ -51,9 +54,18 @@ Future<HomeModel> fetchHomeProject(FetchHomeProjectRef ref) async {
     // repository를 바로 읽어오는 방법
     // final result = ref.watch(homeRepositoryProvider).getHomeProject();
 
-    final result = await ref.watch(homeViewModelProvider.notifier).fetchHomeData();
+    final result =
+        await ref.watch(homeViewModelProvider.notifier).fetchHomeData();
     return result ?? HomeModel();
-  } catch(e) {
+  } on DioException catch (error) {
+    switch (error.type) {
+      case DioExceptionType.connectionError:
+        throw ConnectionError(error);
+      case DioExceptionType.connectionTimeout:
+        throw ConnectionTimeoutError(error);
+        rethrow;
+      default:
+    }
     return HomeModel();
   }
 }

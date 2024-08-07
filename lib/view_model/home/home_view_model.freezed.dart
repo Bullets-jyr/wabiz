@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
+// null일 수도 있기 때문에 default값을 지정합니다.
   List<HomeItemModel> get projects => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -94,7 +95,9 @@ class _$HomeStateImpl implements _HomeState {
   _$HomeStateImpl({final List<HomeItemModel> projects = const []})
       : _projects = projects;
 
+// null일 수도 있기 때문에 default값을 지정합니다.
   final List<HomeItemModel> _projects;
+// null일 수도 있기 때문에 default값을 지정합니다.
   @override
   @JsonKey()
   List<HomeItemModel> get projects {
@@ -130,7 +133,7 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   factory _HomeState({final List<HomeItemModel> projects}) = _$HomeStateImpl;
 
-  @override
+  @override // null일 수도 있기 때문에 default값을 지정합니다.
   List<HomeItemModel> get projects;
   @override
   @JsonKey(ignore: true)

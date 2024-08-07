@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CategoryState {
+// 밑줄에 대한 UI처리를 위해서...
   ProjectType? get selectedType => throw _privateConstructorUsedError;
   EnumCategoryProjectType? get projectFilter =>
-      throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // for 데이터 캐싱
   List<CategoryItemModel> get projects =>
       throw _privateConstructorUsedError; // 받는 값을 AsyncValue로 관리하기 위해서...
   AsyncValue<List<CategoryItemModel>> get projectState =>
@@ -160,12 +161,15 @@ class _$CategoryStateImpl implements _CategoryState {
       this.projectState = const AsyncValue.loading()})
       : _projects = projects;
 
+// 밑줄에 대한 UI처리를 위해서...
   @override
   final ProjectType? selectedType;
   @override
   @JsonKey()
   final EnumCategoryProjectType? projectFilter;
+// for 데이터 캐싱
   final List<CategoryItemModel> _projects;
+// for 데이터 캐싱
   @override
   @JsonKey()
   List<CategoryItemModel> get projects {
@@ -217,11 +221,11 @@ abstract class _CategoryState implements CategoryState {
           final AsyncValue<List<CategoryItemModel>> projectState}) =
       _$CategoryStateImpl;
 
-  @override
+  @override // 밑줄에 대한 UI처리를 위해서...
   ProjectType? get selectedType;
   @override
   EnumCategoryProjectType? get projectFilter;
-  @override
+  @override // for 데이터 캐싱
   List<CategoryItemModel> get projects;
   @override // 받는 값을 AsyncValue로 관리하기 위해서...
   AsyncValue<List<CategoryItemModel>> get projectState;

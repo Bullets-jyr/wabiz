@@ -182,7 +182,7 @@ mixin _$ProjectItemModel {
   String? get title => throw _privateConstructorUsedError;
   String? get owner => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get thumbnail => throw _privateConstructorUsedError; // String? count,
   String? get deadline => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get waitlistCount => throw _privateConstructorUsedError;
@@ -534,6 +534,7 @@ class _$ProjectItemModelImpl
   final int? price;
   @override
   final String? thumbnail;
+// String? count,
   @override
   final String? deadline;
   @override
@@ -719,7 +720,7 @@ abstract class _ProjectItemModel implements ProjectItemModel {
   int? get price;
   @override
   String? get thumbnail;
-  @override
+  @override // String? count,
   String? get deadline;
   @override
   String? get description;

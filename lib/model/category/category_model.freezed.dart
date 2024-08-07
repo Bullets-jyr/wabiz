@@ -213,7 +213,7 @@ mixin _$CategoryItemModel {
   String? get title => throw _privateConstructorUsedError;
   String? get owner => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get thumbnail => throw _privateConstructorUsedError; // String? count,
   String? get deadline => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get waitlistCount => throw _privateConstructorUsedError;
@@ -221,8 +221,8 @@ mixin _$CategoryItemModel {
   int? get totalFunded => throw _privateConstructorUsedError;
   String? get isOpen => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  String? get projectType => throw _privateConstructorUsedError;
+  String? get type =>
+      throw _privateConstructorUsedError; // String? projectType,
   List<int> get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -254,7 +254,6 @@ abstract class $CategoryItemModelCopyWith<$Res> {
       String? isOpen,
       String? category,
       String? type,
-      String? projectType,
       List<int> image});
 }
 
@@ -287,7 +286,6 @@ class _$CategoryItemModelCopyWithImpl<$Res, $Val extends CategoryItemModel>
     Object? isOpen = freezed,
     Object? category = freezed,
     Object? type = freezed,
-    Object? projectType = freezed,
     Object? image = null,
   }) {
     return _then(_value.copyWith(
@@ -355,10 +353,6 @@ class _$CategoryItemModelCopyWithImpl<$Res, $Val extends CategoryItemModel>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectType: freezed == projectType
-          ? _value.projectType
-          : projectType // ignore: cast_nullable_to_non_nullable
-              as String?,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -392,7 +386,6 @@ abstract class _$$CategoryItemModelImplCopyWith<$Res>
       String? isOpen,
       String? category,
       String? type,
-      String? projectType,
       List<int> image});
 }
 
@@ -423,7 +416,6 @@ class __$$CategoryItemModelImplCopyWithImpl<$Res>
     Object? isOpen = freezed,
     Object? category = freezed,
     Object? type = freezed,
-    Object? projectType = freezed,
     Object? image = null,
   }) {
     return _then(_$CategoryItemModelImpl(
@@ -491,10 +483,6 @@ class __$$CategoryItemModelImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectType: freezed == projectType
-          ? _value.projectType
-          : projectType // ignore: cast_nullable_to_non_nullable
-              as String?,
       image: null == image
           ? _value._image
           : image // ignore: cast_nullable_to_non_nullable
@@ -524,7 +512,6 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
       this.isOpen,
       this.category,
       this.type,
-      this.projectType,
       final List<int> image = const []})
       : _image = image;
 
@@ -547,6 +534,7 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
   final int? price;
   @override
   final String? thumbnail;
+// String? count,
   @override
   final String? deadline;
   @override
@@ -563,9 +551,9 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
   final String? category;
   @override
   final String? type;
-  @override
-  final String? projectType;
+// String? projectType,
   final List<int> _image;
+// String? projectType,
   @override
   @JsonKey()
   List<int> get image {
@@ -576,7 +564,7 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
 
   @override
   String toString() {
-    return 'CategoryItemModel(id: $id, categoryId: $categoryId, projectTypeId: $projectTypeId, userId: $userId, title: $title, owner: $owner, price: $price, thumbnail: $thumbnail, deadline: $deadline, description: $description, waitlistCount: $waitlistCount, totalFundedCount: $totalFundedCount, totalFunded: $totalFunded, isOpen: $isOpen, category: $category, type: $type, projectType: $projectType, image: $image)';
+    return 'CategoryItemModel(id: $id, categoryId: $categoryId, projectTypeId: $projectTypeId, userId: $userId, title: $title, owner: $owner, price: $price, thumbnail: $thumbnail, deadline: $deadline, description: $description, waitlistCount: $waitlistCount, totalFundedCount: $totalFundedCount, totalFunded: $totalFunded, isOpen: $isOpen, category: $category, type: $type, image: $image)';
   }
 
   @override
@@ -609,8 +597,6 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.projectType, projectType) ||
-                other.projectType == projectType) &&
             const DeepCollectionEquality().equals(other._image, _image));
   }
 
@@ -634,7 +620,6 @@ class _$CategoryItemModelImpl implements _CategoryItemModel {
       isOpen,
       category,
       type,
-      projectType,
       const DeepCollectionEquality().hash(_image));
 
   @JsonKey(ignore: true)
@@ -670,7 +655,6 @@ abstract class _CategoryItemModel implements CategoryItemModel {
       final String? isOpen,
       final String? category,
       final String? type,
-      final String? projectType,
       final List<int> image}) = _$CategoryItemModelImpl;
 
   factory _CategoryItemModel.fromJson(Map<String, dynamic> json) =
@@ -692,7 +676,7 @@ abstract class _CategoryItemModel implements CategoryItemModel {
   int? get price;
   @override
   String? get thumbnail;
-  @override
+  @override // String? count,
   String? get deadline;
   @override
   String? get description;
@@ -708,9 +692,7 @@ abstract class _CategoryItemModel implements CategoryItemModel {
   String? get category;
   @override
   String? get type;
-  @override
-  String? get projectType;
-  @override
+  @override // String? projectType,
   List<int> get image;
   @override
   @JsonKey(ignore: true)

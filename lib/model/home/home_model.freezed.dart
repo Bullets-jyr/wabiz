@@ -20,7 +20,8 @@ HomeModel _$HomeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeModel {
-  String? get status => throw _privateConstructorUsedError;
+  String? get status =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'total_count')
   int? get totalCount => throw _privateConstructorUsedError;
   List<HomeItemModel> get projects => throw _privateConstructorUsedError;
 
@@ -130,6 +131,7 @@ class _$HomeModelImpl with DiagnosticableTreeMixin implements _HomeModel {
 
   @override
   final String? status;
+// @JsonKey(name: 'total_count')
   @override
   final int? totalCount;
   final List<HomeItemModel> _projects;
@@ -197,7 +199,7 @@ abstract class _HomeModel implements HomeModel {
 
   @override
   String? get status;
-  @override
+  @override // @JsonKey(name: 'total_count')
   int? get totalCount;
   @override
   List<HomeItemModel> get projects;
@@ -220,7 +222,7 @@ mixin _$HomeItemModel {
   String? get title => throw _privateConstructorUsedError;
   String? get owner => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get thumbnail => throw _privateConstructorUsedError; // String? count,
   String? get deadline => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get waitlistCount => throw _privateConstructorUsedError;
@@ -527,6 +529,7 @@ class _$HomeItemModelImpl
   final int? price;
   @override
   final String? thumbnail;
+// String? count,
   @override
   final String? deadline;
   @override
@@ -677,7 +680,7 @@ abstract class _HomeItemModel implements HomeItemModel {
   int? get price;
   @override
   String? get thumbnail;
-  @override
+  @override // String? count,
   String? get deadline;
   @override
   String? get description;

@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:wabiz/shared/widgets/project_large_widget.dart';
 import 'package:wabiz/theme.dart';
 import 'package:wabiz/view_model/home/home_view_model.dart';
 
@@ -175,6 +178,9 @@ class _HomePageState extends State<HomePage> {
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             final project = data.projects[index];
+                            return ProjectLargeWidget(
+                              projectDataString: jsonEncode(project.toJson()),
+                            );
                             return InkWell(
                               onTap: () {
                                 context.push(
@@ -284,7 +290,37 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    error: (error, trace) => Text('${error.toString()}'),
+                    // error: (error, trace) => Text(
+                    //   '${error.toString()}',
+                    // ),
+                    error: (error, trace) {
+                      switch (error) {
+                        case ConnectionTimeoutError():
+                          return globalErrorHandler(
+                            error as ErrorHandler,
+                            error as DioException,
+                            ref,
+                            fetchHomeProjectProvider,
+                          );
+                          // return Center(
+                          //   child: Text("${error.toString()}\n${trace.toString()}"),
+                          // );
+                        case ConnectionError():
+                          return Center(
+                            child: Text("${error.toString()}"),
+                          );
+                        case UnsupportedError():
+                          return Center(
+                            child: Text("${error.toString()}"),
+                          );
+                      }
+                      return globalErrorHandler(
+                        error as ErrorHandler,
+                        error as DioException,
+                        ref,
+                        fetchHomeProjectProvider,
+                      );
+                    },
                     loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ),
@@ -425,4 +461,54 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+sealed class ErrorHandler {}
+
+class ConnectionTimeoutError extends ErrorHandler {
+  DioException exception;
+
+  ConnectionTimeoutError(this.exception);
+}
+
+class ConnectionError extends ErrorHandler {
+  DioException exception;
+
+  ConnectionError(this.exception);
+}
+
+Widget globalErrorHandler(
+    ErrorHandler? errorHandler,
+    DioException? exception,
+    WidgetRef? ref,
+    ProviderOrFamily? provider,
+    ) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text("${exception?.message}"),
+        if (ref != null)
+          TextButton(
+            onPressed: () {
+              if (provider != null) {
+                ref.invalidate(provider);
+              }
+            },
+            child: const Text("새로고침"),
+          ),
+        TextButton(
+          onPressed: () {
+            Clipboard.setData(
+                ClipboardData(text: exception?.stackTrace.toString() ?? ""));
+          },
+          child: const Text(
+            "에러보고",
+          ),
+        ),
+      ],
+    ),
+  );
 }
